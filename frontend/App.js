@@ -5,6 +5,8 @@ function App() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fakeScore, setFakeScore] = useState(null);
+  const [fakeReason, setFakeReason] = useState("");
 
   const handleUpload = async () => {
     if (!file) {
