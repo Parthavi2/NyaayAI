@@ -1,4 +1,4 @@
-# ⚖️ NyaayAI — AI-Powered Legal Aid Platform
+#  NyaayAI — AI-Powered Legal Aid Platform
 
 > *Justice shouldn't be a privilege. It should be a right.*
 
@@ -9,58 +9,58 @@
 
 ---
 
-## 🚨 The Problem
+## The Problem
 
 India's legal system is in crisis — and ordinary citizens bear the cost.
 
 | Statistic | Reality |
 |-----------|---------|
-| 🗂️ Pending cases in India | **5.02+ crore** |
-| ⏳ Average case resolution time | **3–25 years** |
-| 💸 Annual economic loss from unresolved disputes | **₹8.1 lakh crore** |
-| 🚫 Citizens who cannot afford legal services | **80%+** |
-| 🌐 Citizens who speak English | **Only 10.6%** |
-| 👩 Women who abandon legal cases | **3x more likely** |
+| Pending cases in India | **5.02+ crore** |
+| Average case resolution time | **3–25 years** |
+| Annual economic loss from unresolved disputes | **₹8.1 lakh crore** |
+| Citizens who cannot afford legal services | **80%+** |
+| Citizens who speak English | **Only 10.6%** |
+| Women who abandon legal cases | **3x more likely** |
 
 > Most people don't lose legal battles in court — they lose them before they ever begin.
 
 ---
 
-## 💡 What is NyaayAI?
+## What is NyaayAI?
 
 **NyaayAI** is a free, AI-powered legal aid platform that helps everyday Indians:
 
-- 📄 **Understand** complex legal documents (FIRs, notices, summons) in plain language
-- 🔍 **Detect** fake/fraudulent legal notices before falling victim
-- 📅 **Know** their deadlines, rights, and next steps — instantly
-- ✍️ **Draft** legally-informed reply letters with AI assistance
-- 🌍 **Access** everything in Hindi, Marathi, and 20+ regional languages
-- 📱 **Use it on WhatsApp** — no app download required
+- **Understand** complex legal documents (FIRs, notices, summons) in plain language
+- **Detect** fake/fraudulent legal notices before falling victim
+- **Know** their deadlines, rights, and next steps — instantly
+- **Draft** legally-informed reply letters with AI assistance
+- **Access** everything in Hindi, Marathi, and 20+ regional languages
+- **Use it on WhatsApp** — no app download required
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 ```
-🧠 AI Document Understanding     →  Upload FIR / Notice / Summons → instant plain-language summary
-🚨 Fake Notice Detector          →  Fraud risk score: Genuine / Suspicious / Fraud
-📅 Deadline & Action Extractor   →  Never miss a critical legal date again
-✍️  AI Reply Draft Generator      →  Auto-generate legally-sound response letters
-🌐 Multilingual Support          →  Hindi, Marathi + 20 Indian languages via NMT
-📊 Case Outcome Predictor        →  Prediction based on 10 lakh+ historical judgments
-📍 Legal Aid Locator             →  Find nearest NALSA centres instantly
+ AI Document Understanding     →  Upload FIR / Notice / Summons → instant plain-language summary
+ Fake Notice Detector          →  Fraud risk score: Genuine / Suspicious / Fraud
+ Deadline & Action Extractor   →  Never miss a critical legal date again
+  AI Reply Draft Generator      →  Auto-generate legally-sound response letters
+ Multilingual Support          →  Hindi, Marathi + 20 Indian languages via NMT
+ Case Outcome Predictor        →  Prediction based on 10 lakh+ historical judgments
+ Legal Aid Locator             →  Find nearest NALSA centres instantly
 📲 WhatsApp Integration          →  Works on basic smartphones, no install needed
-🔒 Privacy First                 →  End-to-end encryption + auto-delete processing
+ Privacy First                 →  End-to-end encryption + auto-delete processing
 ```
 
 ---
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 ![NyaayAI System Architecture](assets/architecture.svg)
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -75,40 +75,40 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 
 ---
 
-## 🎯 Who It's For
+##  Who It's For
 
 | User | How NyaayAI Helps |
 |------|------------------|
-| 🏘️ Rural & Low-Income Users | Understand legal docs in regional language; avoid scams |
-| 👶 First-Time Legal Users | Clear next steps, deadlines, no confusion |
-| 👨‍👩‍👧 General Public | Save time & legal costs; verify documents instantly |
-| 🏛️ Legal System & Government | Reduce court burden; manage 4.7+ crore pending cases |
-| 🎓 Students & Youth | Build legal awareness; learn rights the easy way |
+|  Rural & Low-Income Users | Understand legal docs in regional language; avoid scams |
+|  First-Time Legal Users | Clear next steps, deadlines, no confusion |
+|  General Public | Save time & legal costs; verify documents instantly |
+|  Legal System & Government | Reduce court burden; manage 4.7+ crore pending cases |
+|  Students & Youth | Build legal awareness; learn rights the easy way |
 
 ---
 
-## 🌍 SDG Alignment
+##  SDG Alignment
 
 | Goal | How NyaayAI Contributes |
 |------|------------------------|
-| ⚖️ **SDG 16** — Peace, Justice & Strong Institutions | Direct access to justice for all |
-| 🤝 **SDG 10** — Reduced Inequalities | Free legal aid for underserved populations |
-| 💰 **SDG 1** — No Poverty | Reduces ₹8.1L crore economic loss from unresolved disputes |
-| 👩 **SDG 5** — Gender Equality | Empowers women who are 3x more likely to abandon cases |
-| 💡 **SDG 9** — Innovation & Infrastructure | AI-powered access where <2% use eCourts today |
+|  **SDG 16** — Peace, Justice & Strong Institutions | Direct access to justice for all |
+|  **SDG 10** — Reduced Inequalities | Free legal aid for underserved populations |
+|  **SDG 1** — No Poverty | Reduces ₹8.1L crore economic loss from unresolved disputes |
+|  **SDG 5** — Gender Equality | Empowers women who are 3x more likely to abandon cases |
+|  **SDG 9** — Innovation & Infrastructure | AI-powered access where <2% use eCourts today |
 
 ---
 
-## 🔐 Privacy & Safety
+##  Privacy & Safety
 
-- ✅ End-to-end encryption on all document uploads
-- ✅ Auto-delete after processing — no data retained
-- ✅ No personal data sold or shared
-- ✅ Compliant with Indian IT Act data protection guidelines
+-  End-to-end encryption on all document uploads
+-  Auto-delete after processing — no data retained
+-  No personal data sold or shared
+-  Compliant with Indian IT Act data protection guidelines
 
 ---
 
-## 👩‍💻 Team Avinya
+##  Team Avinya
 
 | Member | Role |
 |--------|------|
@@ -119,7 +119,7 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 
 ---
 
-## 📚 References
+##  References
 
 1. M. Wahab, "Challenges Afflicting Indian Courts," 2024
 2. M. B. Micevska & A. K. Hazra, "Court Congestion in Indian Lower Courts," 2004
