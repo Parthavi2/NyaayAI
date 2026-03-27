@@ -49,7 +49,7 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
  Multilingual Support          →  Hindi, Marathi + 20 Indian languages via NMT
  Case Outcome Predictor        →  Prediction based on 10 lakh+ historical judgments
  Legal Aid Locator             →  Find nearest NALSA centres instantly
-📲 WhatsApp Integration          →  Works on basic smartphones, no install needed
+ WhatsApp Integration          →  Works on basic smartphones, no install needed
  Privacy First                 →  End-to-end encryption + auto-delete processing
 ```
 
