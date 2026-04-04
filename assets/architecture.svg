@@ -1,0 +1,113 @@
+<svg width="100%" viewBox="0 0 680 780" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- LAYER 1: USER -->
+  <rect x="40" y="30" width="600" height="64" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#3C3489" x="340" y="55" text-anchor="middle" dominant-baseline="central">User layer</text>
+  <text font-size="12" fill="#534AB7" x="340" y="76" text-anchor="middle" dominant-baseline="central">Web App (React / Next.js) · Mobile App (Flutter) · WhatsApp</text>
+
+  <line x1="340" y1="94" x2="340" y2="118" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- LAYER 2: INPUT -->
+  <rect x="40" y="120" width="600" height="64" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#085041" x="340" y="142" text-anchor="middle" dominant-baseline="central">Input &amp; processing layer</text>
+  <text font-size="12" fill="#0F6E56" x="340" y="162" text-anchor="middle" dominant-baseline="central">File upload (PDF · DOCX · Image · Text) → OCR → Parser → Text cleaning</text>
+
+  <line x1="340" y1="184" x2="340" y2="208" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- LAYER 3: AI CORE -->
+  <rect x="40" y="210" width="600" height="168" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="340" y="226" text-anchor="middle" dominant-baseline="central">AI processing layer (core engine)</text>
+
+  <!-- Row 1 of AI modules -->
+  <rect x="48" y="244" width="180" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="138" y="264" text-anchor="middle" dominant-baseline="central">Doc understanding</text>
+  <text font-size="12" fill="#185FA5" x="138" y="283" text-anchor="middle" dominant-baseline="central">NER · classification</text>
+
+  <rect x="250" y="244" width="180" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="340" y="264" text-anchor="middle" dominant-baseline="central">Fraud detection</text>
+  <text font-size="12" fill="#185FA5" x="340" y="283" text-anchor="middle" dominant-baseline="central">Pattern · scam scoring</text>
+
+  <rect x="452" y="244" width="180" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="542" y="264" text-anchor="middle" dominant-baseline="central">Simplification</text>
+  <text font-size="12" fill="#185FA5" x="542" y="283" text-anchor="middle" dominant-baseline="central">LLM plain language</text>
+
+  <!-- Row 2 of AI modules -->
+  <rect x="48" y="312" width="130" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="113" y="332" text-anchor="middle" dominant-baseline="central">Translation</text>
+  <text font-size="12" fill="#185FA5" x="113" y="351" text-anchor="middle" dominant-baseline="central">NMT · 22 langs</text>
+
+  <rect x="192" y="312" width="130" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="257" y="332" text-anchor="middle" dominant-baseline="central">Deadlines</text>
+  <text font-size="12" fill="#185FA5" x="257" y="351" text-anchor="middle" dominant-baseline="central">Date extraction</text>
+
+  <rect x="336" y="312" width="130" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="401" y="332" text-anchor="middle" dominant-baseline="central">Guidance</text>
+  <text font-size="12" fill="#185FA5" x="401" y="351" text-anchor="middle" dominant-baseline="central">Rules + LLM</text>
+
+  <rect x="480" y="312" width="152" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#0C447C" x="556" y="332" text-anchor="middle" dominant-baseline="central">Reply generator</text>
+  <text font-size="12" fill="#185FA5" x="556" y="351" text-anchor="middle" dominant-baseline="central">LLM draft</text>
+
+  <line x1="340" y1="378" x2="340" y2="402" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- LAYER 4: DATA -->
+  <rect x="40" y="404" width="600" height="96" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="421" text-anchor="middle" dominant-baseline="central">Data layer</text>
+
+  <rect x="48" y="438" width="178" height="52" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#2C2C2A" x="137" y="458" text-anchor="middle" dominant-baseline="central">PostgreSQL</text>
+  <text font-size="12" fill="#5F5E5A" x="137" y="476" text-anchor="middle" dominant-baseline="central">Users · templates</text>
+
+  <rect x="251" y="438" width="178" height="52" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#2C2C2A" x="340" y="458" text-anchor="middle" dominant-baseline="central">MongoDB</text>
+  <text font-size="12" fill="#5F5E5A" x="340" y="476" text-anchor="middle" dominant-baseline="central">Scam patterns</text>
+
+  <rect x="454" y="438" width="178" height="52" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#2C2C2A" x="543" y="458" text-anchor="middle" dominant-baseline="central">Neo4j</text>
+  <text font-size="12" fill="#5F5E5A" x="543" y="476" text-anchor="middle" dominant-baseline="central">Legal knowledge</text>
+
+  <line x1="340" y1="500" x2="340" y2="524" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- LAYER 5: OUTPUT -->
+  <rect x="40" y="526" width="600" height="84" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#085041" x="340" y="543" text-anchor="middle" dominant-baseline="central">Output layer</text>
+
+  <rect x="48"  y="560" width="104" height="40" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="12" fill="#085041" x="100" y="580" text-anchor="middle" dominant-baseline="central">Explanation</text>
+
+  <rect x="164" y="560" width="104" height="40" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="12" fill="#085041" x="216" y="580" text-anchor="middle" dominant-baseline="central">Fraud score</text>
+
+  <rect x="280" y="560" width="104" height="40" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="12" fill="#085041" x="332" y="580" text-anchor="middle" dominant-baseline="central">Deadlines</text>
+
+  <rect x="396" y="560" width="104" height="40" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="12" fill="#085041" x="448" y="580" text-anchor="middle" dominant-baseline="central">Next steps</text>
+
+  <rect x="512" y="560" width="120" height="40" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text font-size="12" fill="#085041" x="572" y="580" text-anchor="middle" dominant-baseline="central">Reply draft</text>
+
+  <line x1="340" y1="610" x2="340" y2="634" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- LAYER 6: INTEGRATION -->
+  <rect x="40" y="636" width="600" height="96" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#4A1B0C" x="340" y="653" text-anchor="middle" dominant-baseline="central">Integration layer</text>
+
+  <rect x="48"  y="670" width="178" height="52" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#4A1B0C" x="137" y="690" text-anchor="middle" dominant-baseline="central">Email API</text>
+  <text font-size="12" fill="#993C1D" x="137" y="708" text-anchor="middle" dominant-baseline="central">SMTP / SendGrid</text>
+
+  <rect x="251" y="670" width="178" height="52" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#4A1B0C" x="340" y="690" text-anchor="middle" dominant-baseline="central">Court APIs</text>
+  <text font-size="12" fill="#993C1D" x="340" y="708" text-anchor="middle" dominant-baseline="central">eCourts verification</text>
+
+  <rect x="454" y="670" width="178" height="52" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text font-size="14" font-weight="500" fill="#4A1B0C" x="543" y="690" text-anchor="middle" dominant-baseline="central">Lawyer connect</text>
+  <text font-size="12" fill="#993C1D" x="543" y="708" text-anchor="middle" dominant-baseline="central">Optional escalation</text>
+
+</svg>
