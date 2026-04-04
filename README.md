@@ -115,6 +115,7 @@ The real problem is lack of accessible legal understanding.
 ## 🚀 How to Run Frontend
 
 npm install
+
 npm run dev
 
 ##  Privacy & Safety
