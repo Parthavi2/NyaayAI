@@ -1,8 +1,9 @@
 import { AnalyzeResponse, OutputLanguage } from "@/types";
-import { MOCK_RESPONSE } from "@/lib/mockData";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === "true" || false;
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === "true";
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
@@ -17,16 +18,7 @@ export async function analyzeDocument(
   onProgress?: (progress: number) => void
 ): Promise<AnalyzeResponse> {
   if (USE_MOCK) {
-    onProgress?.(10);
-    await delay(400);
-    onProgress?.(35);
-    await delay(600);
-    onProgress?.(65);
-    await delay(500);
-    onProgress?.(90);
-    await delay(300);
-    onProgress?.(100);
-    return MOCK_RESPONSE;
+    throw new ApiError(500, "Mock mode is enabled. Set NEXT_PUBLIC_USE_MOCK=false");
   }
 
   const formData = new FormData();
@@ -43,7 +35,9 @@ export async function analyzeDocument(
   onProgress?.(80);
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: "Unknown error" }));
+    const error = await response.json().catch(() => ({
+      detail: "Unknown error",
+    }));
     throw new ApiError(response.status, error.detail || "Analysis failed");
   }
 
@@ -56,11 +50,6 @@ export async function analyzeText(
   text: string,
   outputLanguage: OutputLanguage = "en"
 ): Promise<AnalyzeResponse> {
-  if (USE_MOCK) {
-    await delay(1500);
-    return MOCK_RESPONSE;
-  }
-
   const blob = new Blob([text], { type: "text/plain" });
   const file = new File([blob], "pasted-text.txt", { type: "text/plain" });
   return analyzeDocument(file, outputLanguage);
@@ -68,9 +57,10 @@ export async function analyzeText(
 
 export async function getHealth(): Promise<{ status: string }> {
   const response = await fetch(`${API_BASE_URL}/health`);
-  return response.json();
-}
 
-function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  if (!response.ok) {
+    throw new ApiError(response.status, "Backend health check failed");
+  }
+
+  return response.json();
 }
