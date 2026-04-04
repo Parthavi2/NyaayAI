@@ -78,7 +78,7 @@ The real problem is lack of accessible legal understanding.
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React.js, Next.js, React Native / Flutter |
+| Frontend | React.js, Next.js |
 | Backend | Node.js (Express), FastAPI |
 | AI / NLP | Ollama (Local LLM) / Claude LLMs, Tesseract OCR, spaCy NER |
 | Translation | Neural Machine Translation (Indic NLP) |
