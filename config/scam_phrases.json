@@ -1,0 +1,50 @@
+[
+    {
+      "phrase": "urgent payment",
+      "weight": 15
+    },
+    {
+      "phrase": "final warning",
+      "weight": 10
+    },
+    {
+      "phrase": "pay immediately",
+      "weight": 20
+    },
+    {
+      "phrase": "avoid arrest",
+      "weight": 20
+    },
+    {
+      "phrase": "contact on whatsapp",
+      "weight": 25
+    },
+    {
+      "phrase": "no signature required",
+      "weight": 20
+    },
+    {
+      "phrase": "last chance",
+      "weight": 10
+    },
+    {
+      "phrase": "failure to comply will result in arrest",
+      "weight": 25
+    },
+    {
+      "phrase": "send money",
+      "weight": 15
+    },
+    {
+      "phrase": "wire transfer",
+      "weight": 15
+    },
+    {
+      "phrase": "court fees must be paid",
+      "weight": 15
+    },
+    {
+      "phrase": "penalty of arrest",
+      "weight": 20
+    }
+  ]
