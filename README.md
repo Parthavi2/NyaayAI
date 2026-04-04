@@ -112,6 +112,10 @@ The real problem is lack of accessible legal understanding.
 |  **SDG 9** — Innovation & Infrastructure | AI-powered access where <2% use eCourts today |
 
 ---
+## 🚀 How to Run Frontend
+
+npm install
+npm run dev
 
 ##  Privacy & Safety
 
