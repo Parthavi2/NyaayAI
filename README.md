@@ -13,6 +13,9 @@ From confusing legal notices to potential frauds, NyaayAI transforms complex doc
 [![Event](https://img.shields.io/badge/Hackathon-TESSERACT%20'26-red?style=flat-square)]()
 
 ---
+## 📌 Project Overview
+
+👉 [Click here to view full documentation](./PROJECT_OVERVIEW.md)
 
 ## The Problem
 
