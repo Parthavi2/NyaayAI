@@ -1,10 +1,33 @@
+# Python
+.venv/
 venv/
 __pycache__/
 *.pyc
 *.db
+
+# Env files
 .env
 .env.local
-uploads/
+
+# macOS
+.DS_Store
+
+# Node / Next
 node_modules/
 .next/
-.DS_Store
+*.tsbuildinfo
+
+# Uploads / generated
+uploads/
+
+# Backend-specific
+backend/.env
+backend/*.db
+backend/**/__pycache__/
+
+# Frontend-specific
+frontend/.env.local
+frontend/.next/
+frontend/node_modules/
+frontend/.DS_Store
+frontend/*.tsbuildinfo
