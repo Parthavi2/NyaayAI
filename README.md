@@ -1,6 +1,11 @@
-#  NyaayAI — AI-Powered Legal Aid Platform
+#  NyaayAI — AI-Powered Legal Understanding & Fraud Detection System
 
 > *Justice shouldn't be a privilege. It should be a right.*
+> “People are not afraid of the law — they are afraid of not understanding it.”
+
+NyaayAI is a privacy-first, AI-powered legal assistant that helps users understand, verify, and act on legal documents with confidence.
+
+From confusing legal notices to potential frauds, NyaayAI transforms complex documents into clear insights and actionable guidance — all within a secure and intelligent pipeline.
 
 [![SDG 16](https://img.shields.io/badge/SDG-16%20Peace%20%26%20Justice-blue?style=flat-square)](https://sdgs.un.org/goals/goal16)
 [![Track](https://img.shields.io/badge/Track-Open%20Innovation-purple?style=flat-square)]()
@@ -23,6 +28,16 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 | Women who abandon legal cases | **3x more likely** |
 
 > Most people don't lose legal battles in court — they lose them before they ever begin.
+> Legal documents today are:
+
+1.Difficult to understand due to complex language
+
+2.Easily misused for fraud and scams
+
+3.Lacking clear guidance for common people
+
+4.Dependent on expensive legal consultation
+The real problem is lack of accessible legal understanding.
 
 ---
 
@@ -35,7 +50,7 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 - **Know** their deadlines, rights, and next steps — instantly
 - **Draft** legally-informed reply letters with AI assistance
 - **Access** everything in Hindi, Marathi, and 20+ regional languages
-- **Use it on WhatsApp** — no app download required
+  
 
 ---
 
@@ -45,11 +60,10 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
  AI Document Understanding     →  Upload FIR / Notice / Summons → instant plain-language summary
  Fake Notice Detector          →  Fraud risk score: Genuine / Suspicious / Fraud
  Deadline & Action Extractor   →  Never miss a critical legal date again
-  AI Reply Draft Generator      →  Auto-generate legally-sound response letters
+ AI Reply Draft Generator      →  Auto-generate legally-sound response letters
  Multilingual Support          →  Hindi, Marathi + 20 Indian languages via NMT
  Case Outcome Predictor        →  Prediction based on 10 lakh+ historical judgments
  Legal Aid Locator             →  Find nearest NALSA centres instantly
- WhatsApp Integration          →  Works on basic smartphones, no install needed
  Privacy First                 →  End-to-end encryption + auto-delete processing
 ```
 
@@ -66,12 +80,12 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 |-------|-----------|
 | Frontend | React.js, Next.js, React Native / Flutter |
 | Backend | Node.js (Express), FastAPI |
-| AI / NLP | OpenAI / Claude LLMs, Tesseract OCR, spaCy NER |
+| AI / NLP | Ollama (Local LLM) / Claude LLMs, Tesseract OCR, spaCy NER |
 | Translation | Neural Machine Translation (Indic NLP) |
-| Databases | PostgreSQL, MongoDB, Neo4j |
+| Databases | PostgreSQL, MongoDB |
 | Auth | JWT / OAuth 2.0 |
 | Cloud | AWS |
-| APIs | eCourts API, NALSA, SendGrid, WhatsApp Business API |
+| APIs | eCourts API, NALSA, SendGrid|
 
 ---
 
@@ -112,10 +126,10 @@ India's legal system is in crisis — and ordinary citizens bear the cost.
 
 | Member | Role |
 |--------|------|
-| Parthavi Wadhawane | Team Lead |
-| Shraddha Bhujbal | Frontend |
-| Sakshi Kawade | Backend |
-| Srushti Navale | AI-ML |
+| Parthavi Wadhawane | System Architecture & Backend |
+| Shraddha Bhujbal | AI/NLP  |
+| Sakshi Kawade | Backend Development |
+| Srushti Navale | Frontend Development |
 
 ---
 
