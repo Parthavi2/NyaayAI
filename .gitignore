@@ -1,15 +1,10 @@
-<<<<<<< HEAD
 venv/
 __pycache__/
 *.pyc
 *.db
 .env
-uploads/
-=======
-
-node_modules
-.next
 .env.local
-.env
->>>>>>> 1943ea65080ef1517e63d123f8ae0e4a475b76ce
+uploads/
+node_modules/
+.next/
 .DS_Store
