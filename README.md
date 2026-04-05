@@ -72,9 +72,9 @@ The real problem is lack of accessible legal understanding.
 
 ---
 
-##  Architecture Overview
+##  Model work-flow
 
-![NyaayAI System Architecture](assets/architecture.svg)
+![NyaayAI Model Flow](./assets/model-flow.svg)
 ---
 
 ##  Tech Stack
