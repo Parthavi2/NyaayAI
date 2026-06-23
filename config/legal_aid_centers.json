@@ -1,0 +1,50 @@
+[
+    {
+      "name": "District Legal Services Authority Pune",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "phone": "020-26125052"
+    },
+    {
+      "name": "Maharashtra State Legal Services Authority",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "phone": "022-22632406"
+    },
+    {
+      "name": "Delhi State Legal Services Authority",
+      "state": "Delhi",
+      "city": "Delhi",
+      "phone": "011-23385506"
+    },
+    {
+      "name": "Karnataka State Legal Services Authority",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "phone": "080-22113637"
+    },
+    {
+      "name": "Tamil Nadu State Legal Services Authority",
+      "state": "Tamil Nadu",
+      "city": "Chennai",
+      "phone": "044-25340873"
+    },
+    {
+      "name": "Gujarat State Legal Services Authority",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "phone": "079-25501895"
+    },
+    {
+      "name": "West Bengal State Legal Services Authority",
+      "state": "West Bengal",
+      "city": "Kolkata",
+      "phone": "033-22430011"
+    },
+    {
+      "name": "Telangana State Legal Services Authority",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "phone": "040-23450033"
+    }
+  ]

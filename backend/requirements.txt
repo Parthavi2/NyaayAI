@@ -1,0 +1,26 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-multipart
+python-dotenv
+sqlalchemy
+psycopg2-binary
+pytesseract
+pillow
+pymupdf
+pdf2image
+spacy
+langdetect
+openai
+google-cloud-vision
+python-dateutil
+requests
+twilio
+easyocr
+beautifulsoup4
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+email-validator
