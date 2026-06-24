@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Scale, Menu, X, Sparkles } from "lucide-react";
+import { Scale, Menu, X, Sparkles, LogIn, LogOut, UserCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -14,6 +15,8 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,6 +25,12 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+    setMobileOpen(false);
+  };
 
   return (
     <header
@@ -66,18 +75,50 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* Right side: auth */}
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/analyze"
-              className="btn-primary flex items-center gap-2 px-4 py-2 text-sm font-semibold"
-            >
-              <Sparkles size={14} />
-              Analyze Notice
-            </Link>
+            {user ? (
+              <>
+                <span className="flex items-center gap-1.5 text-sm text-slate-400">
+                  <UserCircle size={16} className="text-teal-400" />
+                  {user.name.split(" ")[0]}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-white/[0.06] transition-all"
+                >
+                  <LogOut size={14} />
+                  Sign out
+                </button>
+                <Link
+                  href="/analyze"
+                  className="btn-primary flex items-center gap-2 px-4 py-2 text-sm font-semibold"
+                >
+                  <Sparkles size={14} />
+                  Analyze Notice
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-white/[0.06] transition-all"
+                >
+                  <LogIn size={14} />
+                  Sign in
+                </Link>
+                <Link
+                  href="/register"
+                  className="btn-primary flex items-center gap-2 px-4 py-2 text-sm font-semibold"
+                >
+                  <Sparkles size={14} />
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
 
-          {/* Mobile menu toggle */}
+          {/* Mobile toggle */}
           <button
             className="md:hidden p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/[0.06]"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -104,13 +145,39 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/analyze"
-              onClick={() => setMobileOpen(false)}
-              className="btn-primary block mt-2 px-4 py-2.5 text-sm font-semibold text-center"
-            >
-              Analyze Notice
-            </Link>
+            <div className="mt-2 pt-2 border-t border-white/[0.06] space-y-1">
+              {user ? (
+                <>
+                  <div className="px-4 py-2 text-sm text-slate-500 flex items-center gap-1.5">
+                    <UserCircle size={14} className="text-teal-400" />
+                    {user.name}
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-200 rounded-lg transition-colors"
+                  >
+                    Sign out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-4 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-200 rounded-lg transition-colors"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setMobileOpen(false)}
+                    className="btn-primary block px-4 py-2.5 text-sm font-semibold text-center"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>

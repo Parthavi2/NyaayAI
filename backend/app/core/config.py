@@ -8,16 +8,20 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str = "sqlite:///./nyaay_ai.db"
 
-    # LLM config: set LLM_PROVIDER=ollama, openai, or mock.
-    LLM_PROVIDER: str = "mock"
-    OLLAMA_BASE_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "llama3"
+    # LLM config: set LLM_PROVIDER=groq, openai, anthropic, or mock.
+    LLM_PROVIDER: str = "groq"
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "llama3-70b-8192"
 
     OPENAI_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o"
     ANTHROPIC_API_KEY: str = ""
     ANTHROPIC_MODEL: str = "claude-sonnet-4-20250514"
     AI_HTTP_TIMEOUT_SEC: int = 120
+
+    # Auth
+    SECRET_KEY: str = "changeme-use-a-long-random-secret-in-production"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
 
     GOOGLE_APPLICATION_CREDENTIALS: str = ""
     USE_GOOGLE_VISION: bool = False

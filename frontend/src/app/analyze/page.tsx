@@ -25,10 +25,7 @@ export default function AnalyzePage() {
   const [activeAction, setActiveAction] = useState<string | undefined>();
 
   const handleAnalysis = async (result: AnalyzeResponse) => {
-    // Store result in sessionStorage so dashboard can read it
     sessionStorage.setItem("nyaayai_result", JSON.stringify(result));
-
-    // Add to history
     const history = JSON.parse(localStorage.getItem("nyaayai_history") || "[]");
     const historyItem = {
       id: Date.now().toString(),
@@ -139,10 +136,11 @@ export default function AnalyzePage() {
                 </div>
               </div>
 
-              {/* Demo notice */}
-              <div className="p-3 bg-amber-400/5 border border-amber-400/15 rounded-xl">
-                <p className="text-xs text-amber-300/80 leading-relaxed">
-                  <span className="font-600">Demo Mode:</span> Currently showing mock analysis results. Connect your FastAPI backend to process real documents.
+              {/* Supported formats */}
+              <div className="p-4 bg-teal-400/5 border border-teal-400/15 rounded-xl">
+                <p className="text-xs font-600 text-teal-400 mb-1">Supported Formats</p>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  PDF, JPG, PNG, JPEG — up to 10 MB. For best results use a clear scan or a digital PDF.
                 </p>
               </div>
             </div>

@@ -1,4 +1,4 @@
-﻿fastapi
+fastapi
 uvicorn[standard]
 pydantic
 pydantic-settings
@@ -19,3 +19,8 @@ requests
 twilio
 easyocr
 beautifulsoup4
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+email-validator

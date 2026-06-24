@@ -73,8 +73,9 @@ async def generate_case_assistant_answer(question: str, case_context: Dict[str, 
 
 
 async def translate_case_analysis(case_context: Dict[str, Any], output_language: str) -> Dict[str, Any]:
+    from app.services.translation_service import translate_analysis_fields
     output_language = normalize_output_language(output_language)
-    fallback = {
+    base = {
         "summary": case_context.get("summary", ""),
         "explanation": case_context.get("explanation", ""),
         "reply_draft": case_context.get("reply_draft", _default_reply(output_language)),
@@ -85,22 +86,18 @@ async def translate_case_analysis(case_context: Dict[str, Any], output_language:
         "next_steps": case_context.get("next_steps", []),
         "location_resources": case_context.get("location_resources", []),
     }
-    prompt = _build_translation_prompt(case_context=case_context, output_language=output_language)
-    candidate = await _generate_json(prompt=prompt, fallback=fallback)
-    merged = _merge_fallback(fallback, candidate)
-    merged.setdefault("summary", fallback["summary"])
-    merged.setdefault("explanation", fallback["explanation"])
-    merged.setdefault("reply_draft", fallback["reply_draft"])
+    # Use field-by-field translation for reliability — avoids hitting token limits
+    translated = translate_analysis_fields(base, output_language)
     return {
-        "summary": merged["summary"],
-        "explanation": merged["explanation"],
-        "reply_draft": merged["reply_draft"],
-        "notice_details": merged.get("notice_details", fallback["notice_details"]),
-        "detected_laws": [_normalize_law_match(item) for item in merged.get("detected_laws", fallback["detected_laws"])],
-        "rights_information": [_normalize_right(item) for item in merged.get("rights_information", fallback["rights_information"])],
-        "deadline_items": [_normalize_deadline_item(item) for item in merged.get("deadline_items", fallback["deadline_items"])],
-        "next_steps": [_normalize_next_step(item) for item in merged.get("next_steps", fallback["next_steps"])],
-        "location_resources": [_normalize_resource(item) for item in merged.get("location_resources", fallback["location_resources"])],
+        "summary": translated.get("summary", base["summary"]),
+        "explanation": translated.get("explanation", base["explanation"]),
+        "reply_draft": translated.get("reply_draft", base["reply_draft"]),
+        "notice_details": translated.get("notice_details", base["notice_details"]),
+        "detected_laws": [_normalize_law_match(item) for item in translated.get("detected_laws", base["detected_laws"])],
+        "rights_information": [_normalize_right(item) for item in translated.get("rights_information", base["rights_information"])],
+        "deadline_items": [_normalize_deadline_item(item) for item in translated.get("deadline_items", base["deadline_items"])],
+        "next_steps": [_normalize_next_step(item) for item in translated.get("next_steps", base["next_steps"])],
+        "location_resources": [_normalize_resource(item) for item in translated.get("location_resources", base["location_resources"])],
     }
 
 
@@ -321,17 +318,17 @@ Input:
 
 async def _generate_json(prompt: str, fallback: Dict[str, Any]) -> Dict[str, Any]:
     result: Dict[str, Any] = {}
+    provider = settings.LLM_PROVIDER.lower()
+    if provider == "groq" and settings.GROQ_API_KEY:
+        result = await _groq_json(prompt)
+        if result:
+            return _merge_fallback(fallback, result)
     if settings.ANTHROPIC_API_KEY:
         result = _anthropic_json(prompt)
         if result:
             return _merge_fallback(fallback, result)
-    provider = settings.LLM_PROVIDER.lower()
     if provider == "openai" and settings.OPENAI_API_KEY:
         result = await _openai_json(prompt)
-        if result:
-            return _merge_fallback(fallback, result)
-    if provider == "ollama":
-        result = _ollama_json(prompt)
         if result:
             return _merge_fallback(fallback, result)
     return fallback
@@ -364,19 +361,38 @@ def _anthropic_json(prompt: str) -> Dict[str, Any]:
         return {}
 
 
-def _ollama_json(prompt: str) -> Dict[str, Any]:
+async def _groq_json(prompt: str) -> Dict[str, Any]:
     try:
         response = requests.post(
-            f"{settings.OLLAMA_BASE_URL}/api/generate",
-            json={"model": settings.OLLAMA_MODEL, "prompt": prompt, "stream": False, "format": "json"},
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {settings.GROQ_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": settings.GROQ_MODEL,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a JSON-only API. "
+                            "You must always respond with a single valid JSON object and nothing else. "
+                            "No markdown, no code fences, no explanation — only raw JSON."
+                        ),
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": 0.1,
+                "max_tokens": 6000,
+            },
             timeout=settings.AI_HTTP_TIMEOUT_SEC,
         )
         response.raise_for_status()
-        raw = response.json().get("response", "{}")
-        parsed = _extract_json_object(raw)
+        content = response.json()["choices"][0]["message"]["content"]
+        parsed = _extract_json_object(content)
         return parsed if isinstance(parsed, dict) else {}
     except Exception as exc:
-        print(f"Ollama JSON error: {exc}")
+        print(f"Groq JSON error: {exc}")
         return {}
 
 
@@ -724,6 +740,72 @@ def _coerce_int_or_none(value: Any):
 
 
 def _default_reply(output_language: str) -> str:
+    lang = normalize_output_language(output_language)
+    templates = {
+        "hi": (
+            "सेवा में,\n"
+            "प्रेषक / संबंधित पक्ष,\n\n"
+            "महोदय/महोदया,\n\n"
+            "मैं आपके पत्र की प्राप्ति की पुष्टि करता/करती हूँ। मैं इसकी सामग्री की समीक्षा कर रहा/रही हूँ और नोटिस में किए गए दावों के समर्थन में उपयोग किए गए सभी दस्तावेज़ों, रिकॉर्ड, गणनाओं और अधिकार की पूर्ण प्रतियाँ मांगता/मांगती हूँ।\n\n"
+            "कृपया उचित समय के भीतर सहायक सामग्री प्रदान करें। मैं सभी कानूनी अधिकार और उपाय सुरक्षित रखता/रखती हूँ। इस पत्र में कुछ भी देनदारी की स्वीकृति नहीं माना जाएगा।\n\n"
+            "भवदीय,\n"
+            "[आपका नाम]\n"
+            "[पता]"
+        ),
+        "mr": (
+            "सेवेसी,\n"
+            "प्रेषक / संबंधित पक्ष,\n\n"
+            "महोदय/महोदया,\n\n"
+            "मी आपले पत्र प्राप्त झाल्याची पुष्टी करतो/करते. मी त्यातील मजकुराचा आढावा घेत आहे आणि नोटिसमध्ये केलेल्या दाव्यांच्या समर्थनार्थ वापरलेल्या सर्व कागदपत्रे, नोंदी, गणना आणि अधिकाराच्या पूर्ण प्रती मागतो/मागते.\n\n"
+            "कृपया वाजवी वेळेत सहाय्यक साहित्य पुरवा. मी सर्व कायदेशीर हक्क आणि उपाय राखून ठेवतो/ठेवते. या पत्रातील कोणतीही गोष्ट दायित्वाची कबुली मानली जाऊ नये.\n\n"
+            "आपला/आपली विश्वासू,\n"
+            "[तुमचे नाव]\n"
+            "[पत्ता]"
+        ),
+        "ta": (
+            "அன்புடன்,\n"
+            "அனுப்புநர் / சம்பந்தப்பட்ட தரப்பினர்,\n\n"
+            "ஐயா/அம்மா,\n\n"
+            "உங்கள் கடிதத்தை பெற்றதை உறுதிப்படுத்துகிறேன். நான் அதன் உள்ளடக்கங்களை ஆராய்கிறேன் மற்றும் நோட்டீஸில் செய்யப்பட்ட கோரிக்கைகளை ஆதரிக்கப் பயன்படுத்தப்பட்ட அனைத்து ஆவணங்கள், பதிவுகள், கணக்கீடுகள் மற்றும் அதிகாரத்தின் முழுமையான நகல்களை கோருகிறேன்.\n\n"
+            "நியாயமான நேரத்திற்குள் ஆதரவு ஆவணங்களை வழங்கவும். நான் அனைத்து சட்ட உரிமைகளையும் தீர்வுகளையும் பாதுகாக்கிறேன். இந்தக் கடிதத்தில் உள்ள எதுவும் பொறுப்பை ஒப்புக்கொண்டதாகக் கருதப்படக்கூடாது.\n\n"
+            "உங்கள் உண்மையுள்ள,\n"
+            "[உங்கள் பெயர்]\n"
+            "[முகவரி]"
+        ),
+        "te": (
+            "సేవలో,\n"
+            "పంపినవారు / సంబంధిత పక్షం,\n\n"
+            "అయ్యా/అమ్మా,\n\n"
+            "మీ పత్రం అందినట్లు నిర్ధారిస్తున్నాను. నేను దాని విషయాలను సమీక్షిస్తున్నాను మరియు నోటీసులో చేసిన వాదనలకు మద్దతుగా ఉపయోగించిన అన్ని పత్రాలు, రికార్డులు, లెక్కలు మరియు అధికారం యొక్క పూర్తి కాపీలను అభ్యర్థిస్తున్నాను.\n\n"
+            "సహేతుకమైన సమయంలో సహాయక మెటీరియల్ అందించండి. నేను అన్ని చట్టపరమైన హక్కులు మరియు పరిష్కారాలను కాపాడుకుంటాను. ఈ కమ్యూనికేషన్‌లో ఏదీ బాధ్యతను అంగీకరించినట్లు పరిగణించకూడదు.\n\n"
+            "మీ విశ్వాసపాత్రమైన,\n"
+            "[మీ పేరు]\n"
+            "[చిరునామా]"
+        ),
+        "bn": (
+            "বরাবর,\n"
+            "প্রেরক / সংশ্লিষ্ট পক্ষ,\n\n"
+            "মহোদয়/মহোদয়া,\n\n"
+            "আপনার পত্র প্রাপ্তি নিশ্চিত করছি। আমি এর বিষয়বস্তু পর্যালোচনা করছি এবং নোটিশে করা দাবির সমর্থনে ব্যবহৃত সমস্ত নথি, রেকর্ড, হিসাব ও কর্তৃত্বের সম্পূর্ণ কপি চাইছি।\n\n"
+            "যুক্তিসংগত সময়ের মধ্যে সহায়ক উপকরণ সরবরাহ করুন। আমি সমস্ত আইনগত অধিকার ও প্রতিকার সংরক্ষণ করছি। এই যোগাযোগের কিছুই দায় স্বীকার হিসেবে গণ্য হবে না।\n\n"
+            "আপনার বিশ্বস্ত,\n"
+            "[আপনার নাম]\n"
+            "[ঠিকানা]"
+        ),
+        "gu": (
+            "સેવામાં,\n"
+            "પ્રેષક / સંબંધિત પક્ષ,\n\n"
+            "મહોદય/મહોદયા,\n\n"
+            "આપનો પત્ર મળ્યાની ખાતરી આપું છું. હું તેની સામગ્રીની સમીક્ષા કરી રહ્યો/રહી છું અને નોટિસમાં કરેલા દાવાઓના સમર્થનમાં ઉપયોગ કરાયેલ તમામ દસ્તાવેજો, રેકોર્ડ, ગણતરીઓ અને સત્તાની સંપૂર્ણ નકલો માંગુ છું.\n\n"
+            "વ્યાજબી સમયમાં સહાયક સામગ્રી પ્રદાન કરો. હું તમામ કાનૂની અધિકારો અને ઉપાયો સંભાળી રાખું છું. આ સંચારમાં કંઈ પણ જવાબદારીની સ્વીકૃતિ ગણવામાં ન આવે.\n\n"
+            "આપનો/આપની વિશ્વાસુ,\n"
+            "[તમારું નામ]\n"
+            "[સરનામું]"
+        ),
+    }
+    if lang in templates:
+        return templates[lang]
+    # Default English
     return (
         "To,\n"
         "The Sender / Concerned Party,\n\n"
@@ -732,6 +814,5 @@ def _default_reply(output_language: str) -> str:
         "Please provide the supporting material within a reasonable time. I reserve all legal rights and remedies. Nothing in this communication should be treated as an admission of liability.\n\n"
         "Yours faithfully,\n"
         "[Your Name]\n"
-        "[Address]\n"
-        f"[Preferred response language: {normalize_output_language(output_language)}]"
+        "[Address]"
     )
