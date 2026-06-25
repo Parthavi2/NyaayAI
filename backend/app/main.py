@@ -4,8 +4,6 @@ from app.api.routes import router
 from app.api.auth import router as auth_router
 from app.core.config import settings
 from app.db.database import Base, engine
-import pytesseract
-
 
 # Import all models so SQLAlchemy registers them before create_all
 import app.models.db_models  # noqa: F401
@@ -33,7 +31,6 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(router)
-
 
 @app.get("/")
 def root():
