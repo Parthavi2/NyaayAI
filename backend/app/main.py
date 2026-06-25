@@ -6,7 +6,7 @@ from app.core.config import settings
 from app.db.database import Base, engine
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 # Import all models so SQLAlchemy registers them before create_all
 import app.models.db_models  # noqa: F401
 import app.models.user_models  # noqa: F401
