@@ -24,7 +24,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://nyaay-ai-taupe.vercel.app/",   # ← add your Vercel URL
+        "https://nyaay-ai-taupe.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
